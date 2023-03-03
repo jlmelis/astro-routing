@@ -11,10 +11,10 @@ export async function getStaticPaths() {
 
     return customers?.map((customer) => {
         return {
-        params: { id: customer.id },
-        props: {
-            customer
-        }
+            params: { id: customer.id },
+            props: {
+                customer
+            }
         };
     });
 }
