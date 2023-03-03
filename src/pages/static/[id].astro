@@ -25,14 +25,12 @@ const { customer } = Astro.props;
 ---
 <Layout title="dynamic">
     <main>
-    {customer && 
         <div>
             <span class="text-xl font-bold">{customer.name}</span>
         </div>
         <div>
             <span class="text-xl font-bold">{customer.headline}</span>
         </div>
-    }
     </main>
 
 </Layout>
