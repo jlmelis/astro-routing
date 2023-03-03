@@ -1,0 +1,26 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+import { supabase } from '../../supabase';
+const { id } = Astro.params;
+
+// This would be the call to strapi
+let { data: customer, error } = await supabase
+.from('customers')
+.select('*')
+.eq("id", id)
+.single()
+
+
+if (!customer) return Astro.redirect("/404");
+---
+<Layout title="dynamic">
+    <main>
+        <div>
+            <span class="text-xl font-bold">{customer.name}</span>
+        </div>
+        <div>
+            <span class="text-xl font-bold">{customer.headline}</span>
+        </div>
+    </main>
+</Layout>

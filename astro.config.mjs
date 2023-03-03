@@ -1,4 +1,16 @@
 import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
-export default defineConfig({});
+import tailwind from "@astrojs/tailwind";
+
+// https://astro.build/config
+import node from "@astrojs/node";
+
+// https://astro.build/config
+export default defineConfig({
+  output: 'server',
+  integrations: [tailwind()],
+  adapter: node({
+    mode: "standalone"
+  })
+});

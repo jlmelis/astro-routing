@@ -1,0 +1,38 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+import { supabase } from '../../supabase';
+
+export async function getStaticPaths() {
+    // This would be the call to strapi
+    let { data: customers, error } = await supabase
+    .from('customers')
+    .select('*')
+
+    return customers?.map((customer) => {
+        return {
+        params: { id: customer.id },
+        props: {
+            customer
+        }
+        };
+    });
+}
+
+export const prerender = true;
+
+const { customer } = Astro.props;
+---
+<Layout title="dynamic">
+    <main>
+    {customer && 
+        <div>
+            <span class="text-xl font-bold">{customer.name}</span>
+        </div>
+        <div>
+            <span class="text-xl font-bold">{customer.headline}</span>
+        </div>
+    }
+    </main>
+
+</Layout>
